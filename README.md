@@ -113,5 +113,3 @@ You can simulate this state by triggering the appropriate webhook event.
 Although the embedded UI component also transitions to this state, the webhook trigger provides a reliable way to test the complete capital lifecycle.
 
 Please refer to my demo videos for a walkthrough of the standard webhook trigger flow. A corresponding Postman collection is also included to help test the full capital webhook lifecycle end-to-end.
-
-
