@@ -25,10 +25,10 @@ function App() {
 
         const { data: offersData } = await axios.get("/offer", {
           headers: { Authorization: `Bearer ${parafinToken}` },
-          params: {
-            businessParafinId: "business_db5430a4-e9c2-4090-b775-2d9363894158", // Replace with your BUSINESS_PARAFIN_ID
-            businessExternalId: "business_a101ac8c-644c-4403-a85a-d95cee32adcc", // Replace with your BUSINESS_EXTERNAL_ID
-          },
+          // params: {
+          //   businessParafinId: "business_db5430a4-e9c2-4090-b775-2d9363894158", // Replace with your BUSINESS_PARAFIN_ID
+          //   businessExternalId: "business_a101ac8c-644c-4403-a85a-d95cee32adcc", // Replace with your BUSINESS_EXTERNAL_ID
+          // },
         });
 
         const offersList = offersData.results;
