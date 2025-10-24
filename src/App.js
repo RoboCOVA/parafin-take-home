@@ -9,10 +9,9 @@ import { SideNav } from "./components/SideNav.tsx";
 function App() {
   const [token, setToken] = useState(null);
   const [tab, setTab] = useState("capital");
-//  const [personId] = useState("person_c9d6f61e-07f8-49f8-9639-03d1c95727e2"); // Static person ID for demo
+  const [personId] = useState("person_real_ID"); // Static person ID for demo
+  //Generate Sandbox Env.  Real ID  using Postman collection 
 
-  // merchant -  Offer Available
-  const [personId] = useState("person_db920755-fc9e-4470-b57c-17fb63d2da3c");
   const [uiState, setUiState] = useState("no-offers"); // Track Flex Loan state
   const [offers, setOffers] = useState([]);
 
@@ -29,8 +28,8 @@ function App() {
         const { data: offersData } = await axios.get("/offer", {
           headers: { Authorization: `Bearer ${parafinToken}` },
           // params: {
-          //   businessParafinId: "business_db5430a4-e9c2-4090-b775-2d9363894158", // Replace with your BUSINESS_PARAFIN_ID
-          //   businessExternalId: "business_a101ac8c-644c-4403-a85a-d95cee32adcc", // Replace with your BUSINESS_EXTERNAL_ID
+          //   businessParafinId: "<BUSINESS_PARAFIN_ID>", // Replace with your BUSINESS_PARAFIN_ID
+          //   businessExternalId: "<BUSINESS_EXTERNAL_ID>", // Replace with your BUSINESS_EXTERNAL_ID
           // },
         });
 
