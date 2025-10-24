@@ -1,0 +1,578 @@
+{
+	"info": {
+		"_postman_id": "678f0c0c-9fd8-4145-93f6-d5ac0782dbca",
+		"name": "Parafin-Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16993194"
+	},
+	"item": [
+		{
+			"name": "Create business",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData = pm.response.json();",
+							"pm.environment.set(\"business_ID\", responseData.id);",
+							"pm.environment.set(\"external_ID\", responseData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic ODU2ZjA4YzUtMjg4NS00ZjFiLTg1N2EtODUxZGIyMzRmYzZiOnNhbmRib3hfYkVCTVp5dUxpZWZzQWpUaURURXdBcWpNT0pWb1hsWlNVakVreW9BRUJqSGo5Y0NEN1d5alh0NE40Q2pmZ0l2dA==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"legal_name\": \"GrubDash-E LLC\",\n    \"dba_name\": \"GrubDash-E LLC\",\n    \"address\": {\n      \"line1\": \"611 Mission St\",\n      \"city\": \"San Francisco\",\n      \"state\": \"CA\",\n      \"postal_code\": \"94105\",\n      \"country\": \"US\"\n    },\n    \"established_date\": \"2001-07-09\",\n    \"incorporation_state\": \"CA\",\n    \"incorporation_type\": \"llc\"           \n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PARAFIN_BASE_URL}}/businesses",
+					"host": [
+						"{{PARAFIN_BASE_URL}}"
+					],
+					"path": [
+						"businesses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Persons",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData = pm.response.json();",
+							"pm.environment.set(\"person_ID\", responseData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic ODU2ZjA4YzUtMjg4NS00ZjFiLTg1N2EtODUxZGIyMzRmYzZiOnNhbmRib3hfYkVCTVp5dUxpZWZzQWpUaURURXdBcWpNT0pWb1hsWlNVakVreW9BRUJqSGo5Y0NEN1d5alh0NE40Q2pmZ0l2dA==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\": \"Jack\",\n    \"last_name\": \"Marco\",\n    \"contact_email\": \"jackmarco@xyz.com\",\n    \"contact_phone\": \"1234567890\",\n    \"address\": {\n        \"line1\": \"611 Mission St\",\n        \"line2\": \"\",\n        \"city\": \"San Fracisco\",\n        \"state\": \"CA\",\n        \"country\": \"US\",\n        \"postal_code\": \"94015\"\n    },\n    \"linked_businesses\": [\n        {\n            \"business_id\":\"{{business_ID}}\",\n            \"relationship\": {\n                \"is_beneficial_owner\": true,\n                \"is_representative\": true\n            }\n        }\n    ],\n    \"custom_data\": {},\n    \"external_id\": \"{{external_ID}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PARAFIN_BASE_URL}}/persons",
+					"host": [
+						"{{PARAFIN_BASE_URL}}"
+					],
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Bank Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData = pm.response.json();",
+							"pm.environment.set(\"bank_account_ID\", responseData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic ODU2ZjA4YzUtMjg4NS00ZjFiLTg1N2EtODUxZGIyMzRmYzZiOnNhbmRib3hfYkVCTVp5dUxpZWZzQWpUaURURXdBcWpNT0pWb1hsWlNVakVreW9BRUJqSGo5Y0NEN1d5alh0NE40Q2pmZ0l2dA==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"business_id\": \"{{business_ID}}\",\n   // \"business_parafin_id\": \"{{business_ID}}\",\n    \"routing_number\": \"123456789\",\n    \"account_number\": {\n        \"last4\": \"1234\"\n    },\n    \"currency\": \"USD\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PARAFIN_BASE_URL}}/bank_accounts",
+					"host": [
+						"{{PARAFIN_BASE_URL}}"
+					],
+					"path": [
+						"bank_accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Capital product Create offer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData = pm.response.json();",
+							"pm.environment.set(\"business_ID\", responseData.business.id);",
+							"pm.environment.set(\"external_ID\", responseData.business.external_id);",
+							"pm.environment.set(\"person_ID\", responseData.business.linked_persons[0].id);",
+							"pm.environment.set(\"capital_product_offer_id\", responseData.capital_product_offer.id);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic ODU2ZjA4YzUtMjg4NS00ZjFiLTg1N2EtODUxZGIyMzRmYzZiOnNhbmRib3hfYkVCTVp5dUxpZWZzQWpUaURURXdBcWpNT0pWb1hsWlNVakVreW9BRUJqSGo5Y0NEN1d5alh0NE40Q2pmZ0l2dA==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"capital_product_offer\": {\n      \"max_offer_amount\": \"30000\",\n      \"product_type\": \"flex_loan\",\n      \"include_fee_discount\": false,\n      \"status\":\"Accepted\"\n   },\n   \"person\": {\n      \"address\": {\n         \"city\": \"San Francisco\",\n         \"country\": \"US\",\n         \"state\": \"CA\",\n         \"postal_code\": \"94105\",\n         \"line1\": \"301 Howard St\"\n      },\n      \"contact_email\": \"e.leroy@marksLLC.com\",\n      \"contact_phone\": \"6502228888\",\n      \"first_name\": \"Oscar\",\n      \"last_name\": \"Leroy\",\n       \"custom_data\": \"Accepted\"\n   },\n   \"business\": {\n      \"address\": {\n         \"city\": \"San Francisco\",\n         \"country\": \"US\",\n         \"state\": \"CA\",\n         \"postal_code\": \"94105\",\n         \"line1\": \"301 Howard St\"\n      },\n      \"business_external_id\": \"{{external_ID}}\",\n      \"dba_name\": \"cornergas\",\n      \"established_date\": \"2022-10-10\",\n      \"incorporation_state\": \"CA\",\n      \"incorporation_type\": \"corporation\",\n      \"legal_name\": \"marks  LLC\",\n      \"mcc\": \"5541\",\n       \"status\":\"Accepted\"\n   },\n   \"bank_account\": {\n      \"account_number\": {\n         \"last4\": \"5678\"\n      },\n      \"routing_number\": \"021000021\",\n      \"currency\": \"USD\",\n      \"is_verified\": true\n   }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PARAFIN_BASE_URL}}/sandbox/generate_event/capital_product_offer/created",
+					"host": [
+						"{{PARAFIN_BASE_URL}}"
+					],
+					"path": [
+						"sandbox",
+						"generate_event",
+						"capital_product_offer",
+						"created"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get List offers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"         ",
+							"    let responseData = pm.response.json();",
+							"     pm.environment.set(\"capital_product_offer_id\", responseData.results[0].id);",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic ODU2ZjA4YzUtMjg4NS00ZjFiLTg1N2EtODUxZGIyMzRmYzZiOnNhbmRib3hfYkVCTVp5dUxpZWZzQWpUaURURXdBcWpNT0pWb1hsWlNVakVreW9BRUJqSGo5Y0NEN1d5alh0NE40Q2pmZ0l2dA==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PARAFIN_BASE_URL}}/capital_product_offers?business_parafin_id={{business_ID_Offer}}&business_external_id={{external_ID_Offer}}",
+					"host": [
+						"{{PARAFIN_BASE_URL}}"
+					],
+					"path": [
+						"capital_product_offers"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "business_parafin_id",
+							"value": "{{business_ID_Offer}}"
+						},
+						{
+							"key": "business_external_id",
+							"value": "{{external_ID_Offer}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get List offers  - Empty",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"         ",
+							"    let responseData = pm.response.json();",
+							"     pm.environment.set(\"capital_product_offer_id\", responseData.results[0].id);",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic ODU2ZjA4YzUtMjg4NS00ZjFiLTg1N2EtODUxZGIyMzRmYzZiOnNhbmRib3hfYkVCTVp5dUxpZWZzQWpUaURURXdBcWpNT0pWb1hsWlNVakVreW9BRUJqSGo5Y0NEN1d5alh0NE40Q2pmZ0l2dA==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PARAFIN_BASE_URL}}/capital_product_offers?business_parafin_id={{business_ID}}&business_external_id={{external_ID}}",
+					"host": [
+						"{{PARAFIN_BASE_URL}}"
+					],
+					"path": [
+						"capital_product_offers"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "business_parafin_id",
+							"value": "{{business_ID}}"
+						},
+						{
+							"key": "business_external_id",
+							"value": "{{external_ID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Webhooks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic ODU2ZjA4YzUtMjg4NS00ZjFiLTg1N2EtODUxZGIyMzRmYzZiOnNhbmRib3hfYkVCTVp5dUxpZWZzQWpUaURURXdBcWpNT0pWb1hsWlNVakVreW9BRUJqSGo5Y0NEN1d5alh0NE40Q2pmZ0l2dA==",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{PARAFIN_BASE_URL}}/webhook_endpoints",
+					"host": [
+						"{{PARAFIN_BASE_URL}}"
+					],
+					"path": [
+						"webhook_endpoints"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trigger Webhook offer created",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic ODU2ZjA4YzUtMjg4NS00ZjFiLTg1N2EtODUxZGIyMzRmYzZiOnNhbmRib3hfYkVCTVp5dUxpZWZzQWpUaURURXdBcWpNT0pWb1hsWlNVakVreW9BRUJqSGo5Y0NEN1d5alh0NE40Q2pmZ0l2dA==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"webhook_event_type\": \"capital_product_offer.created\",\n    \"business_external_id\": \"{{external_ID}}\",\n    \"business_parafin_id\": \"{{business_ID}}\",\n    \"person_id\": \"{{person_ID}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PARAFIN_BASE_URL}}/sandbox/trigger_webhook",
+					"host": [
+						"{{PARAFIN_BASE_URL}}"
+					],
+					"path": [
+						"sandbox",
+						"trigger_webhook"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trigger Webhook application updated x4",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic ODU2ZjA4YzUtMjg4NS00ZjFiLTg1N2EtODUxZGIyMzRmYzZiOnNhbmRib3hfYkVCTVp5dUxpZWZzQWpUaURURXdBcWpNT0pWb1hsWlNVakVreW9BRUJqSGo5Y0NEN1d5alh0NE40Q2pmZ0l2dA==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"webhook_event_type\": \"capital_product_application.updated\",\n    \"business_external_id\": \"{{external_ID}}\",\n    \"business_parafin_id\": \"{{business_ID}}\",\n    \"person_id\": \"{{person_ID}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PARAFIN_BASE_URL}}/sandbox/trigger_webhook",
+					"host": [
+						"{{PARAFIN_BASE_URL}}"
+					],
+					"path": [
+						"sandbox",
+						"trigger_webhook"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trigger Webhook capital product created",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic ODU2ZjA4YzUtMjg4NS00ZjFiLTg1N2EtODUxZGIyMzRmYzZiOnNhbmRib3hfYkVCTVp5dUxpZWZzQWpUaURURXdBcWpNT0pWb1hsWlNVakVreW9BRUJqSGo5Y0NEN1d5alh0NE40Q2pmZ0l2dA==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"webhook_event_type\": \"capital_product.created\",\n    \"business_external_id\": \"{{external_ID}}\",\n    \"business_parafin_id\": \"{{business_ID}}\",\n    \"person_id\": \"{{person_ID}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PARAFIN_BASE_URL}}/sandbox/trigger_webhook",
+					"host": [
+						"{{PARAFIN_BASE_URL}}"
+					],
+					"path": [
+						"sandbox",
+						"trigger_webhook"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trigger Webhoor Capital funded",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic ODU2ZjA4YzUtMjg4NS00ZjFiLTg1N2EtODUxZGIyMzRmYzZiOnNhbmRib3hfYkVCTVp5dUxpZWZzQWpUaURURXdBcWpNT0pWb1hsWlNVakVreW9BRUJqSGo5Y0NEN1d5alh0NE40Q2pmZ0l2dA==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"webhook_event_type\": \"capital_product_application.updated\",\n   \"business_external_id\": \"{{external_ID}}\",\n    \"business_parafin_id\": \"{{business_ID}}\",\n    \"person_id\": \"{{person_ID}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PARAFIN_BASE_URL}}/sandbox/trigger_webhook",
+					"host": [
+						"{{PARAFIN_BASE_URL}}"
+					],
+					"path": [
+						"sandbox",
+						"trigger_webhook"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trigger Webhook Capital paid",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic ODU2ZjA4YzUtMjg4NS00ZjFiLTg1N2EtODUxZGIyMzRmYzZiOnNhbmRib3hfYkVCTVp5dUxpZWZzQWpUaURURXdBcWpNT0pWb1hsWlNVakVreW9BRUJqSGo5Y0NEN1d5alh0NE40Q2pmZ0l2dA==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"webhook_event_type\": \"capital_product.closed\",\n  \"business_external_id\": \"{{external_ID}}\",\n    \"business_parafin_id\": \"{{business_ID}}\",\n    \"person_id\": \"{{person_ID}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PARAFIN_BASE_URL}}/sandbox/trigger_webhook",
+					"host": [
+						"{{PARAFIN_BASE_URL}}"
+					],
+					"path": [
+						"sandbox",
+						"trigger_webhook"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Capital Product Approve",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PARAFIN_BASE_URL}}/sandbox/capital_product_application/{{ID}}/approve",
+					"host": [
+						"{{PARAFIN_BASE_URL}}"
+					],
+					"path": [
+						"sandbox",
+						"capital_product_application",
+						"{{ID}}",
+						"approve"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

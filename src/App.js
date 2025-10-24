@@ -9,7 +9,10 @@ import { SideNav } from "./components/SideNav.tsx";
 function App() {
   const [token, setToken] = useState(null);
   const [tab, setTab] = useState("capital");
-  const [personId] = useState("person_11401a28-fff5-45f9-b02c-67746dd88e0c"); // Static person ID for demo
+//  const [personId] = useState("person_c9d6f61e-07f8-49f8-9639-03d1c95727e2"); // Static person ID for demo
+
+  // merchant -  Offer Available
+  const [personId] = useState("person_db920755-fc9e-4470-b57c-17fb63d2da3c");
   const [uiState, setUiState] = useState("no-offers"); // Track Flex Loan state
   const [offers, setOffers] = useState([]);
 
